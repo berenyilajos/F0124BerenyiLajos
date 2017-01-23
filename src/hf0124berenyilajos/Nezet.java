@@ -14,13 +14,13 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
 public class Nezet extends JFrame implements ItemListener {
+
   private JComboBox cb;
   private JTable tDolgozok;
   private ArrayList<Dolgozo> dolgozok;
-  private JPanel pnFo;
+  private JScrollPane spDolgozok;
   private JLabel lDolgozokSzama;
-  
-  
+
   public Nezet() {
     super("Dolgozók listája");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -47,11 +47,15 @@ public class Nezet extends JFrame implements ItemListener {
 
       @Override
       public String getColumnName(int columnIndex) {
-        switch(columnIndex) {
-          case 0: return "ORSZÁG";
-          case 1: return "VÁROS";
-          case 2: return "CÍM";
-          default: return "DOLGZÓ NEVE";
+        switch (columnIndex) {
+          case 0:
+            return "ORSZÁG";
+          case 1:
+            return "VÁROS";
+          case 2:
+            return "CÍM";
+          default:
+            return "DOLGZÓ NEVE";
         }
       }
 
@@ -67,33 +71,36 @@ public class Nezet extends JFrame implements ItemListener {
 
       @Override
       public Object getValueAt(int rowIndex, int columnIndex) {
-        switch(columnIndex) {
-          case 0: return dolgozok.get(rowIndex).getOrszag();
-          case 1: return dolgozok.get(rowIndex).getVaros();
-          case 2: return dolgozok.get(rowIndex).getCim();
-          default: return dolgozok.get(rowIndex).getEmpName();
+        switch (columnIndex) {
+          case 0:
+            return dolgozok.get(rowIndex).getOrszag();
+          case 1:
+            return dolgozok.get(rowIndex).getVaros();
+          case 2:
+            return dolgozok.get(rowIndex).getCim();
+          default:
+            return dolgozok.get(rowIndex).getDolgozoNev();
         }
       }
 
       @Override
       public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        
+
       }
 
       @Override
       public void addTableModelListener(TableModelListener l) {
-        
+
       }
 
       @Override
       public void removeTableModelListener(TableModelListener l) {
-        
+
       }
     });
     tDolgozok.setAutoCreateRowSorter(true);
-    pnFo = new JPanel(new BorderLayout());
-    pnFo.add(new JScrollPane(tDolgozok));
-    add(pnFo);
+    spDolgozok = new JScrollPane(tDolgozok);
+    add(spDolgozok);
     setLocationRelativeTo(this);
     setVisible(true);
   }
@@ -102,12 +109,12 @@ public class Nezet extends JFrame implements ItemListener {
   public void itemStateChanged(ItemEvent e) {
     if (e.getStateChange() == ItemEvent.SELECTED) {
       tDolgozok.setAutoCreateRowSorter(false);
-      dolgozok = Model.getInstance().dolgozok(((Orszag)cb.getSelectedItem()).getAzon());
-      pnFo.revalidate();
-      pnFo.repaint();
+      dolgozok = Model.getInstance().dolgozok(((Orszag) cb.getSelectedItem()).getAzon());
+      spDolgozok.revalidate();
+      spDolgozok.repaint();
       lDolgozokSzama.setText("  " + dolgozok.size() + " dolgozó.");
       tDolgozok.setAutoCreateRowSorter(true);
     }
   }
-  
+
 }

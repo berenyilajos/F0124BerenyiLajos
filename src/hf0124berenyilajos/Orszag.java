@@ -1,6 +1,7 @@
 package hf0124berenyilajos;
 
 public class Orszag {
+
   private String azon;
   private int regioAzon;
   private String name;
@@ -27,7 +28,5 @@ public class Orszag {
   public String toString() {
     return name;
   }
-  
-  
-  
+
 }

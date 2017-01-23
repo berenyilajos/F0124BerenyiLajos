@@ -1,14 +1,14 @@
-
 package hf0124berenyilajos;
 
 public class Dolgozo {
-  private String orszag, varos, cim, empName;
 
-  public Dolgozo(String orszag, String varos, String cim, String empName) {
+  private String orszag, varos, cim, dolgozoNev;
+
+  public Dolgozo(String orszag, String varos, String cim, String dolgozoNev) {
     this.orszag = orszag;
     this.varos = varos;
     this.cim = cim;
-    this.empName = empName;
+    this.dolgozoNev = dolgozoNev;
   }
 
   public String getOrszag() {
@@ -23,15 +23,13 @@ public class Dolgozo {
     return cim;
   }
 
-  public String getEmpName() {
-    return empName;
+  public String getDolgozoNev() {
+    return dolgozoNev;
   }
 
   @Override
   public String toString() {
-    return "Dolgozo{" + "orszag=" + orszag + ", varos=" + varos + ", cim=" + cim + ", empName=" + empName + '}';
+    return "Dolgozo{" + "orszag=" + orszag + ", varos=" + varos + ", cim=" + cim + ", dolgozoNev=" + dolgozoNev + '}';
   }
-  
-  
-  
+
 }
