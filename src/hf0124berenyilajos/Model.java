@@ -41,9 +41,8 @@ public class Model implements Adatok {
   }
 
   // Csak azokat az országokat adja vissza, ahol vannak dolgozók nyilvántartva
-  public Orszag[] orszagok() {
+  public ArrayList<Orszag> orszagok() {
     ArrayList<Orszag> orszagok = new ArrayList<>();
-    orszagok.add(new Orszag("", 0, "Mind"));
     try {
       connect();
       Statement stm = kapcsolat.createStatement();
@@ -58,9 +57,9 @@ public class Model implements Adatok {
       connectClose();
     } catch (SQLException | ClassNotFoundException ex) {
       ex.printStackTrace();
-      return new Orszag[]{new Orszag("", 0, "Mind")};
+      return new ArrayList<>();
     }
-    return orszagok.toArray(new Orszag[orszagok.size()]);
+    return orszagok;
   }
 
   public ArrayList<Dolgozo> dolgozok(String countryId) {

@@ -27,7 +27,10 @@ public class Nezet extends JFrame implements ItemListener {
     setSize(800, 500);
     JPanel pnFent = new JPanel();
     pnFent.add(new JLabel("Ország:  "));
-    cb = new JComboBox(Model.getInstance().orszagok());
+    ArrayList<Orszag> orszagok = new ArrayList<>();
+    orszagok.add(new Orszag("", 0, "Mind"));
+    orszagok.addAll(Model.getInstance().orszagok());
+    cb = new JComboBox(orszagok.toArray(new Orszag[orszagok.size()]));
     pnFent.add(cb);
     cb.addItemListener(this);
     dolgozok = Model.getInstance().dolgozok("");
@@ -47,6 +50,7 @@ public class Nezet extends JFrame implements ItemListener {
 
       @Override
       public String getColumnName(int columnIndex) {
+        
         switch (columnIndex) {
           case 0:
             return "ORSZÁG";
@@ -57,6 +61,7 @@ public class Nezet extends JFrame implements ItemListener {
           default:
             return "DOLGZÓ NEVE";
         }
+        
       }
 
       @Override
